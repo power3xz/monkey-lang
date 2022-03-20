@@ -36,6 +36,8 @@ func (p *Parser) parseStatement() ast.Statement {
 		return nil
 	}
 }
+
+// let <identifier> = <expression>;
 func (p *Parser) parseLetStatement() *ast.LetStatement {
 	stmt := &ast.LetStatement{Token: p.curToken}
 
