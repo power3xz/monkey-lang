@@ -7,6 +7,17 @@ import (
 	"monkey/token"
 )
 
+const (
+	_ int = iota
+	LOWEST
+	EQUALS      // ==
+	LESSGREATER // > 또는 <
+	SUM         // +
+	PRODUCT     // *
+	PREFIX      // -X 또는 !X
+	CALL        // myFunction(X)
+)
+
 type (
 	prefixParseFn func() ast.Expression
 	infixParseFn  func(ast.Expression) ast.Expression
@@ -52,7 +63,7 @@ func (p *Parser) parseStatement() ast.Statement {
 	case token.RETURN:
 		return p.parseReturnStatement()
 	default:
-		return nil
+		return p.parseExpressionStatement()
 	}
 }
 
@@ -85,6 +96,26 @@ func (p *Parser) parseReturnStatement() *ast.ReturnStatement {
 		p.nextToken()
 	}
 	return stmt
+}
+
+// <expression>
+func (p *Parser) parseExpressionStatement() *ast.ExpressionStatement {
+	stmt := &ast.ExpressionStatement{Token: p.curToken}
+	stmt.Expression = p.parseExpression(LOWEST)
+
+	if p.peekTokenIs(token.SEMICOLON) {
+		p.nextToken()
+	}
+	return stmt
+}
+
+func (p *Parser) parseExpression(precedence int) ast.Expression {
+	prefix := p.prefixParseFns[p.curToken.Type]
+	if prefix == nil {
+		return nil
+	}
+	leftExp := prefix()
+	return leftExp
 }
 
 func (p *Parser) ParseProgram() *ast.Program {
