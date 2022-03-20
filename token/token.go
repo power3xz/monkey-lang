@@ -11,8 +11,8 @@ const (
 	EOF     = "EOF"
 
 	// 식별자 + 리터럴
-	INDENT = "INDENT"
-	INT    = "INT"
+	IDENT = "IDENT"
+	INT   = "INT"
 
 	// 연산자
 	ASSIGN   = "="
@@ -56,9 +56,9 @@ var keywords = map[string]TokenType{
 	"false":  FALSE,
 }
 
-func LookupIndent(indent string) TokenType {
-	if tok, ok := keywords[indent]; ok {
+func LookupIdent(ident string) TokenType {
+	if tok, ok := keywords[ident]; ok {
 		return tok
 	}
-	return INDENT
+	return IDENT
 }
