@@ -142,15 +142,15 @@ func (pe *PrefixExpression) String() string {
 }
 
 type InfixExpression struct {
-	Token token.Token // 연산자 토큰, 예를 들어 +
-	Left Expression
+	Token    token.Token // 연산자 토큰, 예를 들어 +
+	Left     Expression
 	Operator string
-	Right Expression
+	Right    Expression
 }
 
-func (ie *InfixExpression) expressionNode {}
-func(ie *InfixExpression) TokenLiteral() string { ie.Token.Literal }
-func(ie *InfixExpression) String() string {
+func (ie *InfixExpression) expressionNode()      {}
+func (ie *InfixExpression) TokenLiteral() string { return ie.Token.Literal }
+func (ie *InfixExpression) String() string {
 	var out bytes.Buffer
 
 	out.WriteString("(")
