@@ -1,7 +1,10 @@
 ## 테스트
 
 ```shell
-go text ./lexer
+# lexer
+go test ./lexer
+# parser
+go test ./parser
 ```
 
 ## REPL
