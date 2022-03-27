@@ -7,6 +7,8 @@ go test ./lexer
 go test ./parser
 # ast
 go test ./ast
+# evaluator
+go test ./evaluator
 ```
 
 ## REPL
