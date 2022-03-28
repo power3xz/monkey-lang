@@ -197,6 +197,7 @@ if (10 > 1) {
 	}
 	return 1;
 }`, "unknown operator: BOOLEAN + BOOLEAN"},
+		{"foobar", "identifier not found: foobar"},
 	}
 
 	for _, tt := range tests {
