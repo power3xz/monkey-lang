@@ -3,7 +3,7 @@ package evaluator
 import "monkey/object"
 
 var builtins = map[string]*object.Builtin{
-	"let": {
+	"len": {
 		Fn: func(args ...object.Object) object.Object {
 			return NULL
 		},
