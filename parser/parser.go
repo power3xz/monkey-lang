@@ -17,6 +17,7 @@ const (
 	PRODUCT     // *
 	PREFIX      // -X 또는 !X
 	CALL        // myFunction(X)
+	INDEX       // array[index]
 )
 
 type (
@@ -151,6 +152,7 @@ var precedences = map[token.TokenType]int{
 	token.SLASH:    PRODUCT,
 	token.ASTERISK: PRODUCT,
 	token.LPAREN:   CALL,
+	token.LBRACKET: INDEX,
 }
 
 func (p *Parser) peekPrecedence() int {
