@@ -165,7 +165,7 @@ func TestReturnStatements(t *testing.T) {
 		{"return 2 * 5; 9;", 10},
 		{"9; return 2 * 5; 9;", 10},
 		{`
-if (10 > 10 {
+if (10 > 1) {
 	if (10 > 1) {
 		return 10;
 	}
@@ -414,7 +414,7 @@ func TestHashLiteral(t *testing.T) {
 		(&object.String{Value: "two"}).HashKey():   2,
 		(&object.String{Value: "three"}).HashKey(): 3,
 		(&object.Integer{Value: 4}).HashKey():      4,
-		(TRUE).HashKey():                           5,
+		TRUE.HashKey():                             5,
 		FALSE.HashKey():                            6,
 	}
 
